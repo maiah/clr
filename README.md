@@ -22,3 +22,9 @@ Clear minus 50 lines (200 - 50 lines)
 ```sh
 $ clr -50
 ```
+
+License
+---
+The MIT License (MIT)
+
+Copyright (c) 2015 Maiah Macariola
