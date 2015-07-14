@@ -23,6 +23,19 @@ Clear minus 50 lines (200 - 50 lines)
 $ clr -50
 ```
 
+Installation
+---
+Build the tool
+```sh
+go get https://github.com/maiah/clr
+go install
+```
+
+Using compiled binaries
+```
+*Soon*
+```
+
 License
 ---
 The MIT License (MIT)
