@@ -6,20 +6,30 @@ import (
 	"strconv"
 )
 
+const DEFAULT_LINE_COUNT = 200 // Default  lines to clear
+
+/**
+ * Clear your terminal 3x !
+ */
 func main() {
+	lines := getLines(os.Args)
+	clear(lines)
+}
 
-	lines := 200
+/**
+ * Compute number of lines to clear.
+ *
+ * @param cargs Command line arguments
+ */
+func getLines(cargs []string) (lines int) {
+	lines = DEFAULT_LINE_COUNT
 
-	if len(os.Args) > 1 {
-		arg := os.Args[1:][0]
+	if len(cargs) > 1 {
+		arg := cargs[1:][0]
 
 		if len(arg) > 1 {
 			firstChar := string([]rune(arg)[0])
-			count, err := strconv.Atoi(arg[1:len(arg)])
-
-			if err != nil {
-				panic(err)
-			}
+			count := convertToInt(arg[1:len(arg)])
 
 			switch firstChar {
 			case "-":
@@ -27,23 +37,36 @@ func main() {
 			case "+":
 				lines += count
 			default:
-				lines, err = strconv.Atoi(arg)
-				if err != nil {
-					panic(err)
-				}
+				lines = convertToInt(arg)
 			}
 
 		} else {
-			count, err := strconv.Atoi(arg)
-			if err != nil {
-				panic(err)
-			}
-
-			lines = count
+			lines = convertToInt(arg)
 		}
 	}
 
+	return
+}
+
+/**
+ * Clear terminal by lines.
+ */
+func clear(lines int) {
 	for i := 0; i < lines; i++ {
-		fmt.Println()
+		fmt.Printf("%d\n", i+1)
 	}
+}
+
+/**
+ * Utility to convert string to int.
+ */
+func convertToInt(carg string) (count int) {
+	lines, err := strconv.Atoi(carg)
+
+	if err != nil {
+		panic(err)
+	}
+
+	count = lines
+	return
 }
