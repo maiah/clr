@@ -53,7 +53,7 @@ func getLines(cargs []string) (lines int) {
  */
 func clear(lines int) {
 	for i := 0; i < lines; i++ {
-		fmt.Printf("%d\n", i+1)
+		fmt.Println()
 	}
 }
 
